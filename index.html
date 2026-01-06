@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Framer Attraction Cursor</title>
+  <style>
+    body, html, #app {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      touch-action: none;
+    }
+
+    #app {
+      height: 100%;
+      font-family: "Montserrat", serif;
+    }
+
+    #canvas {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .buttons {
+      position: fixed;
+      width: 100%;
+      bottom: 15px;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    button, a {
+      color: black;
+      font-family: "Montserrat", serif;
+      font-size: 12px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 5px;
+      border: 1px solid grey;
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <canvas id="canvas"></canvas>
+    <div class="buttons">
+      <button type="button" id="colors-btn">Random colors</button>
+      <a href="https://www.framer.com/@kevin-levron/" target="_blank">Framer Component</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import AttractionCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.26/build/cursors/attraction1.min.js";
+
+    const app = AttractionCursor(document.getElementById('canvas'), {
+      particles: {
+        attractionIntensity: 0.75,
+        size: 1.5,
+      },
+    });
+
+    const button1 = document.getElementById('colors-btn');
+    button1.addEventListener('click', () => {
+      app.particles.light1.color.set(Math.random() * 0xffffff);
+      app.particles.light2.color.set(Math.random() * 0xffffff);
+    });
+  </script>
+</body>
+</html>
+
+위는 디자인 레퍼런스이고 이 코드를 아래 내용과 합쳐서 하나의 index.html 코드에 붙여넣을수 있도록 해줘
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나의 포트폴리오</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", "Noto Sans KR", sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      border-bottom: 1px solid #eee;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0078ff;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 20px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #0078ff;
+      padding-left: 10px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    /* 소개 섹션 */
+    .intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .intro img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #ddd;
+      margin-bottom: 20px;
+    }
+
+    /* 기술 섹션 */
+    .skills ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skills li {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+
+    /* 프로젝트 섹션 */
+    .projects .project {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s;
+    }
+
+    .projects .project:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .projects h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* 연락처 섹션 */
+    .contact a {
+      color: #0078ff;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 0.85rem;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Portfolio</h1>
+    <nav>
+      <a href="#intro">소개</a>
+      <a href="#skills">기술</a>
+      <a href="#projects">프로젝트</a>
+      <a href="#contact">연락처</a>
+    </nav>
+  </header>
+
+  <section id="intro" class="intro">
+    <img src="이미지_경로_여기에.jpg" alt="프로필 이미지 (추후 추가 예정)">
+    <h2>소개</h2>
+    <p>안녕하세요! 저는 웹 개발자 [이름]입니다. 사용자 경험과 깔끔한 디자인을 중요하게 생각하며, 프론트엔드와 백엔드 모두에 관심이 있습니다.</p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>기술</h2>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3 / SCSS</li>
+      <li>JavaScript (ES6+)</li>
+      <li>React</li>
+      <li>Node.js</li>
+      <li>Git / GitHub</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>프로젝트</h2>
+    <div class="project">
+      <h3>프로젝트 1</h3>
+      <p>간단한 설명을 여기에 작성하세요. 어떤 기술을 사용했는지, 어떤 문제를 해결했는지 등을 적으면 좋습니다.</p>
+    </div>
+    <div class="project">
+      <h3>프로젝트 2</h3>
+      <p>다른 프로젝트의 설명을 여기에 작성하세요. GitHub 링크나 배포 링크를 추가할 수도 있습니다.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>연락처</h2>
+    <p>이메일: <a href="mailto:example@email.com">example@email.com</a></p>
+    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+  </section>
+
+  <footer>
+    © 2026 [이름]. All rights reserved.
+  </footer>
+</body>
+</html>
